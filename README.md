@@ -57,7 +57,7 @@ so click-to-call and click-to-text work correctly.
 
 **Images** — see `images/README.txt` for the exact filenames. Drop matching
 files into `/images` and every placeholder box disappears automatically.
-The homepage hero also expects a background photo at `images/hero-bg.jpg`
+The homepage hero also expects a background photo at `images/hero-bg.png`
 (a wide, moody shot works best — see the CSS notes in section 6).
 
 **Reviews** (`reviews.html` and the homepage) — the review cards are marked
@@ -145,7 +145,7 @@ call/text/book bar that's genuinely functional, not just decorative.
 The homepage hero is a full-bleed photo background (`.hero` in
 `css/style.css` — set via `background-image` alongside the contour texture,
 with a dark gradient overlaid for text contrast) rather than a stock
-before/after graphic. Drop your photo in as `images/hero-bg.jpg`; until then
+before/after graphic. Drop your photo in as `images/hero-bg.png`; until then
 it just shows the plain navy/contour background, nothing breaks.
 
 ## 7. Getting a real logo made

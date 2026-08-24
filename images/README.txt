@@ -11,11 +11,11 @@ Sizes below are a guide, not a hard requirement — object-fit:cover will crop
 to match, so slightly different ratios are fine.
 
 HOME PAGE
-  hero-bg.jpg                1920x1200  full-bleed hero background photo
-  service-standard.jpg       800x600    Standard Detail row photo
-  service-interior.jpg       800x600    Interior Only Deep Clean row photo
-  service-full.jpg           800x600    Full Detail row photo
-  service-ceramic.jpg        800x600    Ceramic Coating row photo
+  hero-bg.png                1920x1200  full-bleed hero background photo
+  service-standard.png       800x600    Standard Detail row photo
+  service-interior.png       800x600    Interior Only Deep Clean row photo
+  service-full.png           800x600    Full Detail row photo
+  service-ceramic.png        800x600    Ceramic Coating row photo
 
 ABOUT PAGE
   about-team.jpg             900x1125   team/technician portrait or action shot
