@@ -154,10 +154,9 @@ section { padding-block: clamp(2.75rem, 6vw, 5rem); }
 .nav-cta { display: flex; flex-direction: column; gap: .6rem; margin-top: 1.25rem; }
 
 .nav-overlay {
-  position: fixed; inset: 0; background: rgba(12,26,40,.45); opacity: 0; pointer-events: none;
-  transition: opacity .25s ease; z-index: 105;
+  position: fixed; inset: 0; background: transparent; pointer-events: none; z-index: 105;
 }
-.nav-overlay.is-open { opacity: 1; pointer-events: auto; }
+.nav-overlay.is-open { pointer-events: auto; }
 
 @media (min-width: 960px) {
   .main-nav {
