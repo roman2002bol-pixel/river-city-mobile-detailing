@@ -24,10 +24,16 @@ ABOUT PAGE
   equipment-3.jpg            800x600    polishing / ceramic coating equipment
 
 SERVICE PAGES
+  Each service detail page (services/full-detail.html etc.) reuses the
+  same HOME PAGE photo for that package (service-full.png,
+  service-standard.png, service-interior.png, service-ceramic.png) — no
+  separate file needed. If you'd rather use a different photo on the
+  detail page than on the homepage row, just add these instead:
   full-detail-1.jpg          900x675
   standard-detail-1.jpg      900x675
   interior-deep-clean-1.jpg  900x675
   ceramic-coating-1.jpg      900x675
+  (and point the <img src> in that page back to the -1.jpg filename)
 
 SERVICE AREA PAGES (one representative photo per city is fine — a shot taken
 in that city if you have one, otherwise any strong before/after works)
