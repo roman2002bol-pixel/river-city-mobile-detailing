@@ -155,7 +155,14 @@ section { padding-block: clamp(2.75rem, 6vw, 5rem); }
 .nav-cta { display: flex; flex-direction: column; gap: .6rem; margin-top: 1.25rem; }
 
 .nav-overlay {
-  position: fixed; inset: 0; background: transparent; pointer-events: none; z-index: 105;
+  /* Must stay below .site-header's own z-index (100) — .site-header is
+     position:sticky with a z-index, which makes it its own stacking
+     context, so .main-nav's z-index:110 only wins *inside* the header.
+     If this overlay's z-index is higher than the header's, it paints on
+     top of the whole header — including the open mobile nav panel — and
+     every tap inside the slide-out menu (Services accordion, Book Now,
+     Text Us, any link) silently hits the overlay instead. */
+  position: fixed; inset: 0; background: transparent; pointer-events: none; z-index: 95;
 }
 .nav-overlay.is-open { pointer-events: auto; }
 
@@ -168,9 +175,18 @@ section { padding-block: clamp(2.75rem, 6vw, 5rem); }
   .nav-list > li { border-bottom: none; position: relative; }
   .nav-list > li > a, .nav-group-label { padding: .4rem 0; font-size: .95rem; cursor: pointer; }
   .nav-sub {
+    /* No margin-top here on purpose: a gap between the trigger and this
+       dropdown is dead space the pointer has to cross. Since .nav-sub
+       is a child of .nav-group, hovering the dropdown itself keeps
+       .nav-group:hover true — but only once the cursor is over one of
+       the two boxes. A margin-top created ~10px of empty space between
+       them where the pointer was over neither, so moving the mouse down
+       toward "Full Detail" etc. dropped the hover state and slammed the
+       menu shut before you could click anything. Flush + its own
+       padding below removes that gap entirely. */
     position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
     background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm);
-    box-shadow: var(--shadow-md); min-width: 230px; padding: .5rem; margin-top: .6rem;
+    box-shadow: var(--shadow-md); min-width: 230px; padding: .5rem;
   }
   .nav-group:hover .nav-sub, .nav-group.is-open .nav-sub { display: block; }
   .nav-sub li a { border-radius: 6px; padding: .6rem .7rem; }
