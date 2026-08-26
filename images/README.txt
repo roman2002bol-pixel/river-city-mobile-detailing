@@ -18,7 +18,6 @@ HOME PAGE
   service-ceramic.png        800x600    Ceramic Coating row photo
 
 ABOUT PAGE
-  about-team.jpg             900x1125   team/technician portrait or action shot
   equipment-1.jpg            800x600    mobile unit / water tank setup
   equipment-2.jpg            800x600    steam cleaning equipment
   equipment-3.jpg            800x600    polishing / ceramic coating equipment
