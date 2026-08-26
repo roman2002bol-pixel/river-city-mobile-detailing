@@ -33,9 +33,14 @@ price is confirmed with the customer before the appointment is booked.
 
 ## Service Areas
 
-River City Mobile Detailing serves the following cities in the Richmond, VA metro area. Each page below has area-specific details and a direct booking link:
+River City Mobile Detailing serves all of Richmond, VA — every neighborhood
+in the city, including the Fan District, Church Hill, Museum District,
+Scott's Addition, Carytown, Manchester, Jackson Ward, Northside & Ginter
+Park, Forest Hill & Woodland Heights, Byrd Park, Shockoe Bottom & Shockoe
+Slip, the West End, and Southside — plus the surrounding metro. Each page
+below has area-specific details and a direct booking link:
 
-- [Richmond, VA](https://www.rivercitymobiledetailing.com/areas/richmond.html)
+- [Richmond, VA](https://www.rivercitymobiledetailing.com/areas/richmond.html): The flagship city page — lists every Richmond neighborhood served and a Richmond-specific FAQ.
 - [Chesterfield, VA](https://www.rivercitymobiledetailing.com/areas/chesterfield.html)
 - [Midlothian, VA](https://www.rivercitymobiledetailing.com/areas/midlothian.html)
 - [Colonial Heights, VA](https://www.rivercitymobiledetailing.com/areas/colonial-heights.html)
