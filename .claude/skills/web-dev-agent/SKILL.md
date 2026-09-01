@@ -143,6 +143,37 @@ this exact bug.
   Remove the margin (use padding on the bounding box instead), or don't rely
   on pure `:hover` for anything with a gap.
 
+## Design quality: avoiding generic "AI slop"
+
+Filtered from creator research on why most AI-built sites look the same
+(the raw source material was course-marketing content for unrelated
+platforms/tools — Base44 app-cloning, Higgsfield video generation — none of
+which applies to our static HTML/CSS/JS stack; what follows is only the
+part that actually transfers):
+
+- **Actively avoid the default AI visual tells**: the indigo-to-violet
+  gradient, exactly-three feature cards, heavy rounded/frosted-glass card
+  styling, and generic AI-sounding headlines ("Unlock the power of...",
+  "Seamlessly..."). Richmond and NEXUS already avoid this by using a
+  deliberate 2-color brand palette tied to the actual business (not a
+  default gradient) — keep doing that for any future site.
+- **Before calling a design done, benchmark it against 1-2 real,
+  well-regarded reference sites** (not necessarily a direct competitor —
+  just something with a genuinely high design bar) and explicitly critique
+  the draft against them, section by section. Don't just eyeball it against
+  nothing.
+- **Fonts matter more than they get credit for.** Don't ship on bare
+  browser-default system fonts if a distinctive, properly-licensed
+  (check commercial-use terms) font pairing fits the brand better.
+- **Copywriting**: one clear point and one call-to-action per
+  section/screen — don't stack competing CTAs. Lead with the customer's
+  actual friction/pain point before the feature list, not after.
+- **Run a "does this sound AI-written" pass on finished copy** — watch for
+  em-dash-heavy headlines, "not just X, but Y" constructions, and generic
+  superlatives. This is a different check than the cross-site-duplication
+  diff above (that's about *matching* another page; this is about
+  sounding human at all) — do both, not one instead of the other.
+
 ## Image sourcing
 
 - Pexels CDN pattern for free/commercial-use stock photos:
@@ -249,6 +280,37 @@ this exact bug.
   customer inquiries vanish with no error and no trace. Always call this out
   by name (which field, what it currently is, what needs to replace it)
   rather than leaving it implicit in a README the client may not reread.
+
+## External skill candidates found on GitHub (not installed — ask before adding)
+
+Researched on request; none of these are installed yet. Worth considering
+if a future site needs heavier design polish than our current manual
+process gives:
+
+- [VoltAgent/awesome-agent-skills](https://github.com/VoltAgent/awesome-agent-skills)
+  (33.5k★) — the master curated list; links straight to official skills
+  from Anthropic, Vercel, Google Labs, OpenAI, Figma, Cloudflare, and
+  independent marketers, not just community ones. Two entries in it are
+  directly relevant to us:
+  - [coreyhaines31/marketingskills — ai-seo](https://github.com/coreyhaines31/marketingskills/tree/main/skills/ai-seo) —
+    optimizing content for AI-generated answers; overlaps with
+    [[seo-toolkit]]'s `ai-visibility` entry, worth comparing approaches.
+  - Cloudflare's Core Web Vitals / web-perf skill — overlaps with
+    `technical-seo` in [[seo-toolkit]].
+  - (Anthropic's own `frontend-design`/`web-artifacts-builder` and
+    OpenAI's `frontend-skill` are React/Tailwind-oriented — don't fit our
+    no-build-step static stack directly, but worth knowing they exist.)
+- [superdesigndev/superdesign-skill](https://github.com/superdesigndev/superdesign-skill)
+  (493★) — anti-AI-slop design skill; forces writing a
+  `design-system.md` (typography/colors/spacing/components) before
+  building anything, stack-agnostic.
+- [jiji262/claude-design-skill](https://github.com/jiji262/claude-design-skill)
+  (186★) — explicit anti-slop rules matching the "Design quality" section
+  above almost verbatim (bans aggressive gradients, emoji bullets,
+  rounded-card-with-left-border, gradient-orb-as-AI-icon).
+- Broader curated lists worth knowing about generally:
+  [hesreallyhim/awesome-claude-code](https://github.com/hesreallyhim/awesome-claude-code),
+  [karanb192/awesome-claude-skills](https://github.com/karanb192/awesome-claude-skills).
 
 ## Checklist for a brand-new site build in this folder
 
