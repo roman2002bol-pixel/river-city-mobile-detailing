@@ -36,6 +36,13 @@ these two — apply it by default on the next one instead of re-discovering it.
 
 ## SEO / structured data checklist
 
+**The `searchfit-seo` plugin is installed — see [[seo-toolkit]] for the full
+mapping of which of its skills to use for audits, schema generation, keyword
+research, content strategy, technical SEO, internal linking, and AI-visibility
+tracking.** Use it instead of doing these tasks fully by hand; the rules below
+are what those tools don't know about this project and must still be checked
+by hand afterward.
+
 - Unique `<title>` + meta description per page, keyword worked naturally into
   the H1 and opening paragraph — never stuffed.
 - JSON-LD on every page that warrants it: `AutoDetailing` (or the relevant
@@ -254,7 +261,9 @@ this exact bug.
    existing site in this folder, diff the prose against it (a quick
    `difflib`-based script works well) before calling content done.
 4. Add JSON-LD (the relevant LocalBusiness subtype + `Service` +
-   `FAQPage` + `BreadcrumbList`), matching visible page content exactly.
+   `FAQPage` + `BreadcrumbList`), matching visible page content exactly —
+   use `/searchfit-seo:schema-markup` and then hand-check against
+   [[seo-toolkit]]'s rules.
 5. Add `llms.txt`.
 6. Source/verify images; if reusing stock photos across sibling sites, check
    every one for anything that identifies the wrong location or a competitor.
