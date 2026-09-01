@@ -19,6 +19,14 @@ of Ponte Vedra, FL — same owner, two separate local markets, more may be
 added later). Every lesson below was learned the hard way while building
 these two — apply it by default on the next one instead of re-discovering it.
 
+## House style
+
+- **En dash (–), never em dash (—), anywhere in site copy** (HTML text,
+  README/llms.txt prose, and user-facing strings in CSS/JS — not internal
+  `.claude/` skill docs, those aren't site content). Roman's explicit
+  preference — apply it by default in new content, don't wait to be
+  asked per page.
+
 ## Site architecture conventions
 
 - Static HTML/CSS/JS only. No build step, no framework, no bundler.
