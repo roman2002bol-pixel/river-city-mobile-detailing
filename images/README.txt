@@ -1,13 +1,13 @@
-IMAGE CHECKLIST — River City Mobile Detailing
+IMAGE CHECKLIST – River City Mobile Detailing
 ==============================================
 Drop files into this folder using the EXACT names below and every placeholder
-box on the site will automatically be replaced with your real photo — no code
+box on the site will automatically be replaced with your real photo – no code
 edits needed. Until a file exists, the page shows a labeled gray placeholder
-instead of a broken image (the hero background is the one exception — it
+instead of a broken image (the hero background is the one exception – it
 just quietly shows the plain background until you add it, see below).
 
 Recommended format: .jpg, optimized/compressed (mobile-first = fast loading).
-Sizes below are a guide, not a hard requirement — object-fit:cover will crop
+Sizes below are a guide, not a hard requirement – object-fit:cover will crop
 to match, so slightly different ratios are fine.
 
 HOME PAGE
@@ -25,7 +25,7 @@ ABOUT PAGE
 SERVICE PAGES
   Each service detail page (services/full-detail.html etc.) reuses the
   same HOME PAGE photo for that package (service-full.png,
-  service-standard.png, service-interior.png, service-ceramic.png) — no
+  service-standard.png, service-interior.png, service-ceramic.png) – no
   separate file needed. If you'd rather use a different photo on the
   detail page than on the homepage row, just add these instead:
   full-detail-1.jpg          900x675
@@ -34,7 +34,7 @@ SERVICE PAGES
   ceramic-coating-1.jpg      900x675
   (and point the <img src> in that page back to the -1.jpg filename)
 
-SERVICE AREA PAGES (one representative photo per city is fine — a shot taken
+SERVICE AREA PAGES (one representative photo per city is fine – a shot taken
 in that city if you have one, otherwise any strong before/after works)
   area-richmond.jpg          900x675
   area-chesterfield.jpg      900x675

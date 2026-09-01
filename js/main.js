@@ -1,4 +1,4 @@
-/* River City Mobile Detailing — site behavior. Vanilla JS, no dependencies. */
+/* River City Mobile Detailing – site behavior. Vanilla JS, no dependencies. */
 (function () {
   "use strict";
 
@@ -61,17 +61,17 @@
       var endpointConfigured = form.getAttribute("data-endpoint-ready") === "true";
 
       if (!endpointConfigured) {
-        // No form backend wired up yet (see README) — fall back to a
+        // No form backend wired up yet (see README) – fall back to a
         // pre-filled email so requests are never silently lost.
         e.preventDefault();
         var data = new FormData(form);
         var lines = [];
         data.forEach(function (value, key) { lines.push(key + ": " + value); });
-        var subject = encodeURIComponent("New booking request — River City Mobile Detailing");
+        var subject = encodeURIComponent("New booking request – River City Mobile Detailing");
         var body = encodeURIComponent(lines.join("\n"));
         window.location.href = "mailto:info@rivercitymobiledetailing.com?subject=" + subject + "&body=" + body;
         if (status) {
-          status.textContent = "Opening your email app to send the request — or just call/text us instead.";
+          status.textContent = "Opening your email app to send the request – or just call/text us instead.";
           status.className = "form-status ok is-visible";
         }
       }

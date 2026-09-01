@@ -1,13 +1,13 @@
 # River City Mobile Detailing
 
 > Mobile car detailing company serving Richmond, Virginia and the surrounding
-> metro area. We come to the customer's home or office — no drop-off, no
-> shop visit — and detail the vehicle on-site using our own water and power.
+> metro area. We come to the customer's home or office – no drop-off, no
+> shop visit – and detail the vehicle on-site using our own water and power.
 
 River City Mobile Detailing is a local, Richmond-area-owned mobile auto
 detailing business. Every job is quoted upfront by vehicle size and
 condition, confirmed with the customer before work starts, and walked
-through with them when finished — no shop, no hidden fees. This file is
+through with them when finished – no shop, no hidden fees. This file is
 for AI assistants and agents: it summarizes what the business offers and
 where to find authoritative details on-site. For current prices, exact
 service inclusions, and live appointment availability, follow the links
@@ -17,7 +17,7 @@ below rather than relying on cached or third-party descriptions.
 
 - [Standard Detail](https://www.rivercitymobiledetailing.com/services/standard-detail.html): Exterior wash & wax plus a basic interior vacuum/wipe-down and spot-stain removal. From $160 (sedan/coupe base rate; SUVs/trucks/minivans priced higher by size).
 - [Interior Only Deep Clean](https://www.rivercitymobiledetailing.com/services/interior-deep-clean.html): Seat and carpet shampoo, steam cleaning, and dash/trim polishing for deep-set dirt and odors. From $200 (sedan/coupe base rate; priced up by vehicle size).
-- [Full Detail](https://www.rivercitymobiledetailing.com/services/full-detail.html): Interior and exterior combined in one visit — deep clean top to bottom plus odor elimination. From $320 (sedan/coupe base rate; priced up by vehicle size). Most popular package.
+- [Full Detail](https://www.rivercitymobiledetailing.com/services/full-detail.html): Interior and exterior combined in one visit – deep clean top to bottom plus odor elimination. From $320 (sedan/coupe base rate; priced up by vehicle size). Most popular package.
 - [Ceramic Coating](https://www.rivercitymobiledetailing.com/services/ceramic-coating.html): Full paint correction and machine polishing followed by a professional-grade ceramic coating. Two-Year coating from $500 (cars) / $550 (trucks & SUVs). Three-Year coating from $600 (cars) / $650 (trucks & SUVs).
 
 All prices above are starting rates for a sedan/coupe; larger vehicles
@@ -33,14 +33,14 @@ price is confirmed with the customer before the appointment is booked.
 
 ## Service Areas
 
-River City Mobile Detailing serves all of Richmond, VA — every neighborhood
+River City Mobile Detailing serves all of Richmond, VA – every neighborhood
 in the city, including the Fan District, Church Hill, Museum District,
 Scott's Addition, Carytown, Manchester, Jackson Ward, Northside & Ginter
 Park, Forest Hill & Woodland Heights, Byrd Park, Shockoe Bottom & Shockoe
-Slip, the West End, and Southside — plus the surrounding metro. Each page
+Slip, the West End, and Southside – plus the surrounding metro. Each page
 below has area-specific details and a direct booking link:
 
-- [Richmond, VA](https://www.rivercitymobiledetailing.com/areas/richmond.html): The flagship city page — lists every Richmond neighborhood served and a Richmond-specific FAQ.
+- [Richmond, VA](https://www.rivercitymobiledetailing.com/areas/richmond.html): The flagship city page – lists every Richmond neighborhood served and a Richmond-specific FAQ.
 - [Chesterfield, VA](https://www.rivercitymobiledetailing.com/areas/chesterfield.html)
 - [Midlothian, VA](https://www.rivercitymobiledetailing.com/areas/midlothian.html)
 - [Colonial Heights, VA](https://www.rivercitymobiledetailing.com/areas/colonial-heights.html)
@@ -49,13 +49,13 @@ below has area-specific details and a direct booking link:
 - [Short Pump, VA](https://www.rivercitymobiledetailing.com/areas/short-pump.html)
 
 A customer outside these specific cities but still in the greater
-Richmond metro should still reach out via the contact page — coverage
+Richmond metro should still reach out via the contact page – coverage
 often extends slightly beyond the listed towns.
 
 ## Company
 
 - [Home](https://www.rivercitymobiledetailing.com/): Overview of services, pricing, and how booking works.
-- [About Us](https://www.rivercitymobiledetailing.com/about.html): Company story and equipment — the mobile unit is fully self-contained (own water tank, power, and tools), so nothing is needed from the customer's home.
+- [About Us](https://www.rivercitymobiledetailing.com/about.html): Company story and equipment – the mobile unit is fully self-contained (own water tank, power, and tools), so nothing is needed from the customer's home.
 - [Reviews](https://www.rivercitymobiledetailing.com/reviews.html): Customer reviews and testimonials.
 
 ## Optional

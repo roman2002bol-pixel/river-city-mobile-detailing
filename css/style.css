@@ -1,5 +1,5 @@
 /* ==========================================================================
-   River City Mobile Detailing — design system
+   River City Mobile Detailing – design system
    Mobile-first, zero external UI dependencies, fast-loading.
    Brand hook: Richmond, VA is nicknamed "River City" after the James
    River running through it. We echo that with a subtle topographic
@@ -9,9 +9,9 @@
 
 :root {
   /* Color */
-  --ink: #0c1a28;          /* deep navy — headers, footer, hero */
+  --ink: #0c1a28;          /* deep navy – headers, footer, hero */
   --ink-2: #132a3d;
-  --accent: #1fb6ad;       /* teal — "river" accent, ceramic sheen */
+  --accent: #1fb6ad;       /* teal – "river" accent, ceramic sheen */
   --accent-dark: #158b84;
   --accent-soft: #e4f7f5;
   --gold: #d9a441;         /* small warm highlight for "most popular" etc */
@@ -155,11 +155,11 @@ section { padding-block: clamp(2.75rem, 6vw, 5rem); }
 .nav-cta { display: flex; flex-direction: column; gap: .6rem; margin-top: 1.25rem; }
 
 .nav-overlay {
-  /* Must stay below .site-header's own z-index (100) — .site-header is
+  /* Must stay below .site-header's own z-index (100) – .site-header is
      position:sticky with a z-index, which makes it its own stacking
      context, so .main-nav's z-index:110 only wins *inside* the header.
      If this overlay's z-index is higher than the header's, it paints on
-     top of the whole header — including the open mobile nav panel — and
+     top of the whole header – including the open mobile nav panel – and
      every tap inside the slide-out menu (Services accordion, Book Now,
      Text Us, any link) silently hits the overlay instead. */
   position: fixed; inset: 0; background: transparent; pointer-events: none; z-index: 95;
@@ -178,7 +178,7 @@ section { padding-block: clamp(2.75rem, 6vw, 5rem); }
     /* No margin-top here on purpose: a gap between the trigger and this
        dropdown is dead space the pointer has to cross. Since .nav-sub
        is a child of .nav-group, hovering the dropdown itself keeps
-       .nav-group:hover true — but only once the cursor is over one of
+       .nav-group:hover true – but only once the cursor is over one of
        the two boxes. A margin-top created ~10px of empty space between
        them where the pointer was over neither, so moving the mouse down
        toward "Full Detail" etc. dropped the hover state and slammed the
