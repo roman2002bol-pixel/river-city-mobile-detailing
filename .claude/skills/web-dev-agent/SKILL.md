@@ -281,33 +281,38 @@ part that actually transfers):
   by name (which field, what it currently is, what needs to replace it)
   rather than leaving it implicit in a README the client may not reread.
 
-## External skill candidates found on GitHub (not installed — ask before adding)
+## External GitHub skills — installed
 
-Researched on request; none of these are installed yet. Worth considering
-if a future site needs heavier design polish than our current manual
-process gives:
+Two of the four candidates found on GitHub got vendored in as real skills
+(MIT-licensed source repos, attribution + license kept in each folder):
+
+- **`ai-seo`** (from [coreyhaines31/marketingskills](https://github.com/coreyhaines31/marketingskills)) —
+  much deeper AI-citation/GEO tactics than `seo-toolkit`'s `ai-visibility`
+  entry alone (Princeton GEO research, AI-bot robots.txt directives,
+  llms.txt/pricing.md/OKF specs). Use this for a real AI-visibility push;
+  see [[seo-toolkit]] for how it fits alongside the installed
+  `searchfit-seo` plugin.
+- **`claude-design`** (from [jiji262/claude-design-skill](https://github.com/jiji262/claude-design-skill)) —
+  for one-off design artifacts (mockups, decks, posters, prototype
+  variations), not for ongoing site maintenance — keep using this
+  (`web-dev-agent`) skill for that. Its craft rules are already the basis
+  of the "Design quality" section above.
+
+## External GitHub skills — found, not installed
 
 - [VoltAgent/awesome-agent-skills](https://github.com/VoltAgent/awesome-agent-skills)
-  (33.5k★) — the master curated list; links straight to official skills
-  from Anthropic, Vercel, Google Labs, OpenAI, Figma, Cloudflare, and
-  independent marketers, not just community ones. Two entries in it are
-  directly relevant to us:
-  - [coreyhaines31/marketingskills — ai-seo](https://github.com/coreyhaines31/marketingskills/tree/main/skills/ai-seo) —
-    optimizing content for AI-generated answers; overlaps with
-    [[seo-toolkit]]'s `ai-visibility` entry, worth comparing approaches.
-  - Cloudflare's Core Web Vitals / web-perf skill — overlaps with
-    `technical-seo` in [[seo-toolkit]].
-  - (Anthropic's own `frontend-design`/`web-artifacts-builder` and
-    OpenAI's `frontend-skill` are React/Tailwind-oriented — don't fit our
-    no-build-step static stack directly, but worth knowing they exist.)
+  (33.5k★) — the master curated list itself isn't an installable skill,
+  just the index that surfaced the two above (plus Anthropic, Vercel,
+  Google Labs, OpenAI, Figma, and Cloudflare's own official skills — the
+  Cloudflare Core Web Vitals one overlaps with `technical-seo` in
+  [[seo-toolkit]] if ever needed).
 - [superdesigndev/superdesign-skill](https://github.com/superdesigndev/superdesign-skill)
-  (493★) — anti-AI-slop design skill; forces writing a
-  `design-system.md` (typography/colors/spacing/components) before
-  building anything, stack-agnostic.
-- [jiji262/claude-design-skill](https://github.com/jiji262/claude-design-skill)
-  (186★) — explicit anti-slop rules matching the "Design quality" section
-  above almost verbatim (bans aggressive gradients, emoji bullets,
-  rounded-card-with-left-border, gradient-orb-as-AI-icon).
+  (493★) — **deliberately not installed.** Despite the name, this isn't a
+  plain instruction file — it's a CLI wrapper around the superdesign.dev
+  SaaS: using it requires `superdesign login` (creating/using a third-party
+  account) and spends paid credits per generation. Creating accounts on
+  the user's behalf is outside what this agent does on its own — if this
+  is ever wanted, Roman would need to sign up and log in himself first.
 - Broader curated lists worth knowing about generally:
   [hesreallyhim/awesome-claude-code](https://github.com/hesreallyhim/awesome-claude-code),
   [karanb192/awesome-claude-skills](https://github.com/karanb192/awesome-claude-skills).

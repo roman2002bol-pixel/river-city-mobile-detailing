@@ -21,6 +21,11 @@ follow-up, because these are generic tools that don't know this project's
 specific hard requirements (see [[web-dev-agent]] for where those rules come
 from).
 
+For AI-citation/GEO work specifically, also see the vendored **`ai-seo`**
+skill (from coreyhaines31/marketingskills, documented in
+[[web-dev-agent]]'s "External GitHub skills" section) — it goes well beyond
+`searchfit-seo:ai-visibility`'s scope with concrete, sourced tactics.
+
 ## Which skill for which job
 
 | Task | Skill to invoke | Notes |
