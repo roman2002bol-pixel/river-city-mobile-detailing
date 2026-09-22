@@ -51,6 +51,22 @@ tracking.** Use it instead of doing these tasks fully by hand; the rules below
 are what those tools don't know about this project and must still be checked
 by hand afterward.
 
+- **`<title>` <= 62 characters, meta description 70-160** -- measured on the
+  RENDERED text, so `&amp;` counts as one character, not five. Every page on
+  the NEXUS site broke this except the homepage (2026-09-22): eight titles
+  between 65 and 77 characters and four descriptions over 160, all from the
+  same cause as on the microsites -- a long brand-plus-location suffix
+  (`| NEXUS Mobile Detailing - Ponte Vedra Beach, FL`, 46 characters) bolted
+  onto a title that already said where it was. The homepage was fine because
+  it used the short suffix `| NEXUS`. Put the keyword and the place first,
+  keep the suffix to the brand alone, and let the location live in the
+  keyword half where it is doing work.
+- When a title or description changes, change `og:title` / `twitter:title`
+  and `og:description` / `twitter:description` with it -- they are separate
+  tags and drift silently.
+- `scripts/check_seo_basics.py` in the `microsite-agent` skill checks all of
+  this and runs fine against these detailing sites too; it is not
+  microsite-specific.
 - Unique `<title>` + meta description per page, keyword worked naturally into
   the H1 and opening paragraph — never stuffed.
 - JSON-LD on every page that warrants it: `AutoDetailing` (or the relevant
@@ -197,6 +213,29 @@ part that actually transfers):
 
 ## Booking platform integration (Setmore, or similar third-party booking SaaS)
 
+**First decide whether a self-serve calendar is right for this business at
+all.** It is not a default. Roman had a live Setmore calendar on the NEXUS
+site and asked for it to be pulled (2026-09-22): a one-van mobile operation
+cannot let a stranger drop a job onto a specific hour without the owner in
+the loop, and a booking he has to unwind is worse than a click he never
+got. Phone-first is the honest answer for a solo operator with a variable
+route; a calendar earns its place once there are enough crews that the
+owner is no longer the constraint.
+
+When pulling one out, it is not just the button. On NEXUS that meant the
+booking link, the whole `contact.html` section around it, the
+`.booking-embed` CSS, the `setmore_booking` GA4 event in `main.js`, the
+calendar glyph in the mobile action bar on all nine pages, and three
+separate bits of body copy that promised a calendar ("grab a slot online",
+"pick a time and you're booked"). Grep for the vendor name *and* for the
+words the copy uses -- the vendor name alone finds about half of it.
+
+Replace it with something that explains the flow rather than an empty gap:
+call or text, we confirm time and price in the same conversation, we come
+to you. Keep the form -- a request the owner answers is not a booking that
+happens without him.
+
+
 - **Never guess a subdomain.** These are first-come-first-served, not
   reserved by business name. A guessed `businessname.setmore.com` can
   coincidentally belong to a real, unrelated business in another state —
@@ -226,6 +265,141 @@ part that actually transfers):
    commit.
 4. Always load the actual live URL afterward and check the real DOM (not just
    trust the API) before telling the client it's live.
+
+## Deployment workflow (Cloudflare Pages/Workers — alternative to GitHub Pages)
+
+NEXUS migrated off Vercel to Cloudflare mid-project (Sept 2026); River City
+stays on GitHub Pages. Use this path when the client wants Cloudflare instead
+(their own domain already on Cloudflare, or they explicitly ask to move off
+Vercel/Netlify/GitHub Pages).
+
+- The current unified product is **Workers & Pages** (`dash.cloudflare.com` →
+  Workers & Pages → Create application → **Connect GitHub**), which deploys a
+  static-asset Worker, not the legacy standalone "Pages" flow — don't go
+  looking for a separate Pages product first.
+- **GitHub connection is two separate things** — a GitHub App installation
+  (repo-level access grant) and Cloudflare's own account-level OAuth link.
+  The App can already be installed (scoped to the right repo) while
+  Cloudflare's dashboard still shows "Connect GitHub" as if nothing happened —
+  this is not a bug to fix, just click through it again; it re-confirms the
+  existing grant rather than re-prompting for new access.
+- Cloudflare's "Connect GitHub" opens a **real browser popup/new-window**,
+  not an in-page modal — browser-automation tools that are (correctly)
+  forbidden from driving sign-in-style popups will get stuck here. This step
+  needs the human to click through it themselves; walk them through exactly
+  which button to press rather than trying to script around the restriction.
+- **Domain cutover, once the Worker is deployed:** don't hand-edit DNS
+  records to point at the new host. Go to the Worker → **Settings → Domains**
+  (or **Domains and Routes**) → **Add Domain**, once for the bare root domain
+  and once for `www` — Cloudflare creates/overwrites the correct DNS records
+  and issues the SSL cert itself. This is also the fix if DNS is already
+  broken (see next point): Cloudflare will refuse to auto-add the domain
+  while a conflicting record exists, so delete the old record(s) first, then
+  add the Custom Domain.
+- **Real incident, worth checking for by default when handed a "DNS record
+  I set up" to review:** a client attempting this manually created a
+  circular CNAME pair — root domain CNAME'd to `www`, and `www` CNAME'd back
+  to the root domain. Each record "resolves" by pointing at the other, so
+  neither ever resolves to anything — the domain goes fully dark, not just
+  misconfigured. Symptom to watch for: two CNAME records whose targets are
+  each other. Fix is deleting both and re-adding via the Worker's Custom
+  Domains flow above, not editing them in place.
+- After cutover, verify the **actual custom domain** in a real browser (not
+  just the `*.workers.dev` URL) — compare rendered text against the repo, not
+  just "does it load" (a stale cache or wrong Worker can serve a plausible
+  but outdated page).
+- Vercel (or whatever the old host was) will start showing "Invalid
+  Configuration" on its own domain-settings page once DNS points elsewhere —
+  that's expected confirmation the cutover worked, not a new problem to fix.
+  Don't delete the old project immediately; leave it a few days as a rollback
+  path, then have the client delete it themselves (deleting another
+  platform's project on the client's behalf is out of scope — no access to
+  do it anyway in the normal case).
+
+## Form backend integration (Web3Forms)
+
+Alternative to Formspree — zero account signup, just an emailed access key,
+good default when the client wants something even lighter-weight.
+
+- Endpoint: `POST https://api.web3forms.com/submit`, body = the form's own
+  `FormData` (needs an `access_key` hidden field plus, optionally, `subject`
+  and `from_name` hidden fields to control the notification email), header
+  `Accept: application/json` to get a JSON `{success, message}` response
+  back instead of a redirect to Web3Forms' own thank-you page.
+- **Wire it as a real `fetch()` submit, not a bare HTML form POST** — same
+  reasoning as the mailto-fallback rule below: intercept `submit`, `fetch()`
+  the endpoint, show the result in the page's own `.form-status` element.
+  Visitor never leaves the page, and a failure shows an inline message
+  instead of a broken redirect.
+- If a site has more than one form using this pattern (e.g. a homepage quote
+  form and a separate contact-page form), wire the handler with
+  `document.querySelectorAll("[data-booking-form]").forEach(...)`, not a
+  single `querySelector` — a real bug: the handler was written singular
+  first, silently doing nothing on the second form until caught.
+- Give every form a distinct hidden `subject` value (e.g. "New quote request
+  – Homepage" vs "...– Contact Page") so the client's inbox tells the two
+  apart without opening the email.
+- Add a honeypot field (a hidden `botcheck` checkbox) — free spam reduction,
+  no extra service needed.
+- **Verify end-to-end for real** before calling it done: submit the actual
+  form in a real browser AND fire one raw `fetch()` call directly, and be
+  upfront with the client that this generates real test emails to their
+  inbox (better than them discovering test emails they didn't expect).
+
+## Google Business Profile management (owner-side, via the Search-embedded widget)
+
+When asked to help fix up a client's GBP listing, the practical entry point
+is the **"Ваша компанія в Google" / "Your Business on Google" panel that
+appears directly in Google Search results** when logged in as the verified
+owner and searching the exact business name — not the separate
+business.google.com dashboard. Real gotchas hit doing this on NEXUS:
+
+- **This panel lives in a cross-origin iframe.** `read_page`/`find` see
+  none of its fields — it's invisible to the accessibility tree entirely,
+  even though it's fully visible via screenshot and clickable via
+  screenshot coordinates. Budget for pure coordinate-based clicking +
+  screenshots here; there is no ref-based shortcut.
+  - **Exception**: the top-level shortcut icons/links around the panel
+    (e.g. "Редагувати профіль", "Змінити інформацію про компанію") ARE
+    real page elements and ARE findable/clickable by ref — only the modal
+    *content* that opens after clicking one is the blind iframe. Try `find`
+    first; fall back to coordinates only once you're inside a modal.
+  - Scrolling inside a modal via mouse-wheel `scroll` on a coordinate often
+    does nothing (event doesn't reach the nested iframe's scroll
+    container) — drag the visible scrollbar thumb, or click a small
+    up/down chevron control if the modal has one, instead of assuming
+    wheel-scroll works.
+- **Keyboard `Backspace` can silently fail to register** in this widget's
+  text inputs (confirmed on the category field — one attempt produced a
+  doubled letter, meaning some keystrokes landed and some didn't). `type`
+  actions inserting fresh text still work. Never incrementally
+  backspace-then-retype a field here — `triple_click` to select-all, then
+  type the complete correct value in one shot.
+- **If you can't fully verify an edit went through correctly (e.g. can't
+  confirm an autocomplete dropdown actually accepted a category value),
+  cancel rather than save.** This is a real, live business listing — an
+  unconfirmed automated edit risks corrupting it silently. Tell the client
+  exactly which field to change themselves and how; a 30-second manual
+  click beats a guessed automated save.
+- **Treat third-party AI audit reports on a GBP profile with real
+  skepticism — verify every claim against the live panel before acting.**
+  A pasted audit claimed NEXUS's category and description were both
+  "missing"; both were actually already set. Report the discrepancy to the
+  client plainly rather than silently trusting or silently ignoring the
+  audit.
+- The **"Послуги" / Services** menu (separate from the business category)
+  lets the owner list individual services with descriptions and starting
+  prices — check here before assuming it's empty; it can be independently
+  filled in by the client between sessions without them mentioning it.
+  Cross-check its prices against the live site's pricing when reviewing.
+- Checking for open work: the panel's own "Заповнення профілю" / "Complete
+  your profile" checklist doubles as a live TODO list (exterior photo, get
+  first reviews, add an update/post, add social profiles, etc.) — read it
+  instead of re-deriving what's missing from scratch.
+- A profile can legitimately have **zero photos beyond an uploaded logo** —
+  don't assume "profile has photos" from a nonzero count without opening
+  the photos panel and confirming they're real work/product photos, not
+  just the brand logo uploaded twice (as profile photo + cover photo).
 
 ## Browser-automation testing gotchas (verifying a site before/after deploy)
 
