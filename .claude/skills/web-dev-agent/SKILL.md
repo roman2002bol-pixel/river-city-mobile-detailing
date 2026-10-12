@@ -348,6 +348,18 @@ the Cloudflare project. Pick one; the mismatch is the bug.
 Also check the apex: `curl -I https://<domain>/` should redirect to `www`
 (or the reverse). On NEXUS the apex served the whole site with 200.
 
+### Keep the repo's internal files off the live domain
+
+Cloudflare's static-asset deploy uploads the **whole repository** unless told
+otherwise. On NEXUS that meant `STATUS.md`, `README.md` and every `.claude/`
+skill were publicly served on the business domain and indexable there
+(found 2026-10-12). Put an `.assetsignore` (gitignore syntax) at the repo
+root listing `.claude`, `*.md`, `.nojekyll`, `.assetsignore` and anything
+else that is not a page or asset; then `curl` one of those paths on the live
+domain and expect 404, and `curl` robots.txt / sitemap.xml / llms.txt and a
+page and expect 200. GitHub Pages ignores the file -- there, a public repo is
+public anyway.
+
 ## Form backend integration (Web3Forms)
 
 Alternative to Formspree — zero account signup, just an emailed access key,
