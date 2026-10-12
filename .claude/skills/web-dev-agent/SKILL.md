@@ -81,6 +81,19 @@ by hand afterward.
   is for AI assistants/agents discovering the business, not just search
   crawlers.
 
+### Reading Search Console's "not indexed" count
+
+Do not read the headline number as lost pages. Open each reason:
+
+- **Alternate page with proper canonical tag** and **Page with redirect** for
+  a URL whose twin is in the indexed list are consolidation working. Starting
+  "Validate fix" on them will just report Failed.
+- The pages that actually matter are the ones **missing from both lists**.
+  Take the sitemap, subtract the indexed list, and run URL Inspection on what
+  is left. On NEXUS three real pages came back "URL is unknown to Google".
+- Check the **Sitemaps** report early. NEXUS had never had a sitemap submitted,
+  so a new site with little authority was relying on crawling links alone.
+
 ## Multi-site portfolio: duplication is the real risk, not shared structure
 
 When this owner spins up a new site for the same kind of business in a new
@@ -316,6 +329,25 @@ Vercel/Netlify/GitHub Pages).
   platform's project on the client's behalf is out of scope — no access to
   do it anyway in the normal case).
 
+### Cloudflare clean URLs vs `.html` canonicals (found on NEXUS, 2026-10-12)
+
+Cloudflare's static-asset hosting answers every `/page.html` with a **307
+redirect to `/page`**. If the canonical tags, `og:url`, sitemap `<loc>` and
+internal links all say `.html` -- which is what a hand-written static site
+naturally does -- every listed URL redirects to a page whose canonical points
+back at the redirecting URL. On NEXUS that was 9 of 10 sitemap URLs.
+
+Google tolerated it for most pages (it indexed the `.html` versions), but it
+generated a Search Console "not indexed" list made entirely of the
+extensionless twins, which reads as "half the site is not indexed" when
+nothing is actually lost. Check with `curl -I https://www.<domain>/<page>.html`
+after any Cloudflare migration. Fix by making canonical, sitemap, `og:url` and
+links use the URL that returns 200 -- or by turning the HTML redirect off in
+the Cloudflare project. Pick one; the mismatch is the bug.
+
+Also check the apex: `curl -I https://<domain>/` should redirect to `www`
+(or the reverse). On NEXUS the apex served the whole site with 200.
+
 ## Form backend integration (Web3Forms)
 
 Alternative to Formspree — zero account signup, just an emailed access key,
@@ -438,6 +470,22 @@ business.google.com dashboard. Real gotchas hit doing this on NEXUS:
   option), narrow with a structural filter
   (`matches.find(el => el.closest('.the-actual-container'))`) rather than
   picking the first match.
+
+### Playwright MCP extension mode and Search Console in a background tab
+
+- `--profile-dir-name` takes the profile's **directory** name, which is not the
+  name Edge shows. On this machine the profile Edge labels "Profile 4" is
+  directory `Profile 3`, and the one labelled "LPromo" is directory
+  `Profile 4` (where the Playwright extension is installed). Map them from
+  `%LOCALAPPDATA%/Microsoft/Edge/User Data/Local State` ->
+  `profile.info_cache` before debugging tokens.
+- Every failed extension handshake leaves a connect tab open; about 100 had
+  piled up in the LPromo window. A token change in `~/.claude.json` only takes
+  effect after the server is reconnected (`/mcp`).
+- Search Console in a Claude in Chrome tab that is not in front: clicks on
+  report-row text do not open the drilldown and screenshots time out. Clicking
+  the enclosing table row via JavaScript, reloading, and reading
+  `document.body.innerText` worked reliably.
 
 ## Safety / business-integrity defaults (non-negotiable, apply without being asked)
 
