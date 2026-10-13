@@ -346,7 +346,15 @@ links use the URL that returns 200 -- or by turning the HTML redirect off in
 the Cloudflare project. Pick one; the mismatch is the bug.
 
 Also check the apex: `curl -I https://<domain>/` should redirect to `www`
-(or the reverse). On NEXUS the apex served the whole site with 200.
+(or the reverse). On NEXUS the apex served the whole site with 200 until
+2026-10-13. The rule that fixed it (Rules > Redirect Rules > custom filter
+expression): filter `(http.host eq "<domain>")`, dynamic target
+`concat("https://www.<domain>", http.request.uri.path)`, 301, preserve query
+string. Do not use the dashboard's "Redirect from root to WWW" template as is:
+it matches only `https://`, so `http://<domain>` stays a 200 copy. A wildcard
+of `http*://<domain>/*` confuses the dashboard (it read the host as "http").
+`http://www.` is a separate case, handled by the zone's "Always Use HTTPS"
+setting. Verify with curl on both schemes and a URL with a query string.
 
 ### Keep the repo's internal files off the live domain
 
